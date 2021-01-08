@@ -4,10 +4,19 @@
 using Markdown
 using InteractiveUtils
 
+# ╔═╡ 1ad50efe-51bf-11eb-0187-674be0e7234a
+using Pkg, DrWatson
+
 # ╔═╡ b8a0ad70-510e-11eb-11db-433a77f65b2f
 begin
-	using Pkg, PlutoUI, CSV, DataFrames, StatsPlots
+	@quickactivate "superforecasters"
+	using PlutoUI, CSV, DataFrames, StatsPlots
 	plotly()
+end
+
+# ╔═╡ 3a965f9c-510e-11eb-08dc-8d1cdc52e218
+with_terminal() do
+	Pkg.status()
 end
 
 # ╔═╡ 0cdb58ae-510f-11eb-12d4-5393fb3dec0c
@@ -18,11 +27,6 @@ df_raw = CSV.read("data2020_b.csv", DataFrame)[!,3:end];
 
 # ╔═╡ 9ebdd936-5187-11eb-2ed8-3fa4ec45d80c
 
-
-# ╔═╡ 3a965f9c-510e-11eb-08dc-8d1cdc52e218
-with_terminal() do
-	Pkg.status()
-end
 
 # ╔═╡ c9f9c422-5185-11eb-3e8d-3f96592baac1
 function split_column_name(s)
@@ -102,6 +106,9 @@ string_with_na_to_float("20")
 string_with_na_to_float("NA")
 
 # ╔═╡ Cell order:
+# ╠═1ad50efe-51bf-11eb-0187-674be0e7234a
+# ╠═b8a0ad70-510e-11eb-11db-433a77f65b2f
+# ╠═3a965f9c-510e-11eb-08dc-8d1cdc52e218
 # ╠═0cdb58ae-510f-11eb-12d4-5393fb3dec0c
 # ╠═93b434d4-5189-11eb-32be-e97d67e6f555
 # ╠═93552228-5189-11eb-0a42-5776e305433f
@@ -110,8 +117,6 @@ string_with_na_to_float("NA")
 # ╠═35013218-51b9-11eb-275e-d5a3685e2ea0
 # ╠═3493c430-51b9-11eb-2b59-6bd9bde30ed5
 # ╠═9ebdd936-5187-11eb-2ed8-3fa4ec45d80c
-# ╠═3a965f9c-510e-11eb-08dc-8d1cdc52e218
-# ╠═b8a0ad70-510e-11eb-11db-433a77f65b2f
 # ╠═c9f9c422-5185-11eb-3e8d-3f96592baac1
 # ╠═ef460ef8-5186-11eb-360f-cfb255b92d0f
 # ╠═0bce4e76-5187-11eb-2fbd-a5a81560ac90
