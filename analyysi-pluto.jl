@@ -4,14 +4,15 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ 1ad50efe-51bf-11eb-0187-674be0e7234a
-using Pkg, DrWatson
-
-# ╔═╡ b8a0ad70-510e-11eb-11db-433a77f65b2f
+# ╔═╡ bd3a666c-51c4-11eb-0ea5-3beaf9b624c2
 begin
-	@quickactivate "superforecasters"
-	using PlutoUI, CSV, DataFrames, StatsPlots
-	plotly()
+  import Pkg
+  Pkg.add("CSV")
+  Pkg.add("DataFrames")
+  Pkg.add("PlutoUI")
+  Pkg.add("StatsPlots")
+  using PlutoUI, CSV, DataFrames, StatsPlots
+  plotly()
 end
 
 # ╔═╡ 3a965f9c-510e-11eb-08dc-8d1cdc52e218
@@ -106,8 +107,7 @@ string_with_na_to_float("20")
 string_with_na_to_float("NA")
 
 # ╔═╡ Cell order:
-# ╠═1ad50efe-51bf-11eb-0187-674be0e7234a
-# ╠═b8a0ad70-510e-11eb-11db-433a77f65b2f
+# ╠═bd3a666c-51c4-11eb-0ea5-3beaf9b624c2
 # ╠═3a965f9c-510e-11eb-08dc-8d1cdc52e218
 # ╠═0cdb58ae-510f-11eb-12d4-5393fb3dec0c
 # ╠═93b434d4-5189-11eb-32be-e97d67e6f555
