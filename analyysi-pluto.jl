@@ -5,29 +5,16 @@ using Markdown
 using InteractiveUtils
 
 # ╔═╡ b8a0ad70-510e-11eb-11db-433a77f65b2f
-using Pkg, PlutoUI, CSV, DataFrames, StatsPlots
+begin
+	using Pkg, PlutoUI, CSV, DataFrames, StatsPlots
+	plotly()
+end
 
 # ╔═╡ 0cdb58ae-510f-11eb-12d4-5393fb3dec0c
-df_raw = CSV.read("data2020.csv", DataFrame)[!,3:end];
+df_raw = CSV.read("data2020_b.csv", DataFrame)[!,3:end];
 
-# ╔═╡ e804f34e-5197-11eb-0646-b127893f0b17
+# ╔═╡ 3493c430-51b9-11eb-2b59-6bd9bde30ed5
 
-
-# ╔═╡ e7d7697e-5197-11eb-22d8-33d90761fba1
-
-
-# ╔═╡ 06e2bc36-5186-11eb-3a97-65b85b57388d
-
-
-# ╔═╡ 79040c14-5110-11eb-3e9a-4bfb5ae917f2
-ENV["COLUMNS"]=1000
-
-# ╔═╡ 78dba6c0-5110-11eb-237f-4ba69887f14a
-Pkg.add("StatsPlots")
-
-# ╔═╡ 78b70752-5110-11eb-1c11-c7c8123c1839
-using  
-#plotly()
 
 # ╔═╡ 9ebdd936-5187-11eb-2ed8-3fa4ec45d80c
 
@@ -80,19 +67,6 @@ end;
 # ╔═╡ 93552228-5189-11eb-0a42-5776e305433f
 column_names
 
-# ╔═╡ 9312c0c2-5189-11eb-2b25-57488418a6a2
-describe(df, :first, :eltype, :nmissing)
-
-# ╔═╡ 0717884e-5186-11eb-1bbd-9b146a295fd1
-df[!, 7:end]
-
-# ╔═╡ 0d8cddd6-510f-11eb-149c-cbcd4a6a416d
-begin
-	@df df histogram(:row_id, ticks=:native)
-	yaxis!("count")
-	xaxis!("row_id")
-end
-
 # ╔═╡ 3006417c-5187-11eb-0d0c-1bcaaf659578
 clean_column_name("27.  ")
 
@@ -102,7 +76,23 @@ Symbol(clean_column_name("27.  "))
 # ╔═╡ 8a5eca56-5194-11eb-2e18-9d8b842aba0c
 function string_with_na_to_float(s)
     s=="NA" && return missing
-    parse(Int32, s)
+    parse(Float32, s)
+end
+
+# ╔═╡ 06e2bc36-5186-11eb-3a97-65b85b57388d
+df2 = select(df, 
+	1:6, 
+	names(df, 7:32) .=> ByRow(string_with_na_to_float),
+	renamecols=false)
+
+# ╔═╡ 9312c0c2-5189-11eb-2b25-57488418a6a2
+describe(df2, :first, :median, :mean, :eltype, :nmissing)
+
+# ╔═╡ 35013218-51b9-11eb-275e-d5a3685e2ea0
+begin
+	@df df2 histogram(:Q1, ticks=:native)
+	#yaxis!("count")
+	xaxis!(column_names[:Q1])
 end
 
 # ╔═╡ 8e371412-5194-11eb-221f-152be903cc6e
@@ -115,15 +105,10 @@ string_with_na_to_float("NA")
 # ╠═0cdb58ae-510f-11eb-12d4-5393fb3dec0c
 # ╠═93b434d4-5189-11eb-32be-e97d67e6f555
 # ╠═93552228-5189-11eb-0a42-5776e305433f
-# ╠═9312c0c2-5189-11eb-2b25-57488418a6a2
-# ╠═0717884e-5186-11eb-1bbd-9b146a295fd1
-# ╠═e804f34e-5197-11eb-0646-b127893f0b17
-# ╠═e7d7697e-5197-11eb-22d8-33d90761fba1
 # ╠═06e2bc36-5186-11eb-3a97-65b85b57388d
-# ╠═0d8cddd6-510f-11eb-149c-cbcd4a6a416d
-# ╠═79040c14-5110-11eb-3e9a-4bfb5ae917f2
-# ╠═78dba6c0-5110-11eb-237f-4ba69887f14a
-# ╠═78b70752-5110-11eb-1c11-c7c8123c1839
+# ╠═9312c0c2-5189-11eb-2b25-57488418a6a2
+# ╠═35013218-51b9-11eb-275e-d5a3685e2ea0
+# ╠═3493c430-51b9-11eb-2b59-6bd9bde30ed5
 # ╠═9ebdd936-5187-11eb-2ed8-3fa4ec45d80c
 # ╠═3a965f9c-510e-11eb-08dc-8d1cdc52e218
 # ╠═b8a0ad70-510e-11eb-11db-433a77f65b2f
