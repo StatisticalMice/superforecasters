@@ -15,6 +15,9 @@ begin
   plotly()
 end
 
+# ╔═╡ b9a5cb92-51d6-11eb-3f9c-7fc268d1cc5a
+@__DIR__
+
 # ╔═╡ 3a965f9c-510e-11eb-08dc-8d1cdc52e218
 with_terminal() do
 	Pkg.status()
@@ -107,6 +110,7 @@ string_with_na_to_float("20")
 string_with_na_to_float("NA")
 
 # ╔═╡ Cell order:
+# ╠═b9a5cb92-51d6-11eb-3f9c-7fc268d1cc5a
 # ╠═bd3a666c-51c4-11eb-0ea5-3beaf9b624c2
 # ╠═3a965f9c-510e-11eb-08dc-8d1cdc52e218
 # ╠═0cdb58ae-510f-11eb-12d4-5393fb3dec0c
